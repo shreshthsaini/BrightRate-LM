@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="BrightRate-LM: representation-aware quality assessment for user-generated HDR video.">
+  <title>BrightRate-LM</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main>
+    <header>
+      <h1>BrightRate-LM</h1>
+      <p class="subtitle">Representation-Aware Quality Assessment for User-Generated HDR Video</p>
+      <p class="authors">Shreshth Saini, Yilin Wang, Neil Birkbeck, Balu Adsumilli, Alan C. Bovik</p>
+      <nav aria-label="Project links">
+        <a href="https://arxiv.org/abs/TODO">Paper</a>
+        <a href="https://github.com/shreshthsaini/BrightRate-LM">Code</a>
+        <a data-hf-models href="__HF_MODELS_URL__">Models</a>
+        <a href="https://github.com/shreshthsaini/BrightVQ">BrightVQ</a>
+        <a href="https://shreshthsaini.github.io/CHUG/">CHUG</a>
+        <a href="https://shreshthsaini.github.io/Beyond8Bits/">Beyond8Bits</a>
+      </nav>
+    </header>
+
+    <section>
+      <h2>What this is</h2>
+      <p>BrightRate-LM predicts the perceptual quality of user-generated HDR video and returns a score, a description of visible defects, and reasoning for the score. This work extends BrightRate (WACV 2026) by testing how multimodal language models respond to tone-mapped, multi-exposure, and native PQ inputs.</p>
+    </section>
+
+    <section>
+      <h2>Key figures</h2>
+      <figure class="wide">
+        <img src="assets/hero-pareto.png" alt="Accuracy, memory, and throughput comparisons for selected models">
+        <figcaption>BrightRate-LM gives the strongest measured accuracy among the selected models while retaining a 7B backbone.</figcaption>
+      </figure>
+      <div class="figure-grid">
+        <figure>
+          <img src="assets/exposure-ladder.png" alt="SROCC change from SDR to multi-exposure input">
+          <figcaption>Multi-exposure input improves four of five matched model and recipe pairs.</figcaption>
+        </figure>
+        <figure>
+          <img src="assets/family-scaling.png" alt="Zero-shot and supervised scaling across model families">
+          <figcaption>Supervised quality prediction does not improve monotonically with model size.</figcaption>
+        </figure>
+        <figure>
+          <img src="assets/loss-curves.png" alt="Training loss curves for the studied model families">
+          <figcaption>The matched recipes converge, but lower training loss does not guarantee better held-out ranking.</figcaption>
+        </figure>
+        <figure>
+          <img src="assets/qualitative-output.png" alt="BrightRate-LM score, description, and reasoning example">
+          <figcaption>The output interface pairs the numeric estimate with a short visual diagnosis.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section>
+      <h2>Main result</h2>
+      <p class="protocol">BrightRate-LM values are five-split means. BrightRate values are published 100-split medians.</p>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>Model</th><th>Input</th><th>SROCC</th><th>PLCC</th><th>KRCC</th><th>RMSE</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>BrightRate-LM, 7B</td><td>Multi-exposure</td><td>0.9052</td><td>0.9107</td><td>0.7281</td><td>5.5348</td></tr>
+            <tr><td>BrightRate, published</td><td>HDR-aware features</td><td>0.8887</td><td>0.8970</td><td>0.7059</td><td>5.7514</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section>
+      <h2>Insights</h2>
+      <ul>
+        <li>The multi-exposure interface improves four of five matched models.</li>
+        <li>The largest measured gain is 0.0638 SROCC for Qwen2.5-VL-3B.</li>
+        <li>Qwen3-VL-2B with multi-exposure input exceeds Qwen3-VL-8B with tone-mapped input.</li>
+        <li>Gemma-4 zero-shot strength does not carry over to the matched supervised recipe.</li>
+        <li>Both tested native PQ interfaces fail to learn a useful ranking.</li>
+        <li>BrightRate-LM reports a score, a defect description, and score reasoning.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Data</h2>
+      <p>Experiments use <a href="https://github.com/shreshthsaini/BrightVQ">BrightVQ</a> from <a href="https://openaccess.thecvf.com/content/WACV2026/papers/Saini_BrightRate_Quality_Assessment_for_User-Generated_HDR_Videos_WACV_2026_paper.pdf">BrightRate</a>.</p>
+    </section>
+
+    <section>
+      <h2>BibTeX</h2>
+      <pre><code>@article{saini2026brightratelm,
+  title   = {BrightRate-LM: Representation-Aware Quality Assessment for User-Generated HDR Video},
+  author  = {Saini, Shreshth and Wang, Yilin and Birkbeck, Neil and Adsumilli, Balu and Bovik, Alan C.},
+  journal = {Machine Vision and Applications},
+  year    = {2026},
+  note    = {Submitted}
+}</code></pre>
+    </section>
+  </main>
+</body>
+</html>

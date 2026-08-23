@@ -22,7 +22,9 @@ git clone https://github.com/shreshthsaini/BrightRate-LM.git
 cd BrightRate-LM
 uv venv --python 3.11
 uv pip install --python .venv/bin/python --index-strategy unsafe-best-match -r requirements.txt
-.venv/bin/hf download __HF_PRIMARY_ADAPTER__ --local-dir adapters/brightrate-lm-7b
+.venv/bin/hf download __HF_PRIMARY_ADAPTER__ \
+  adapter_config.json adapter_model.safetensors \
+  --local-dir adapters/brightrate-lm-7b
 .venv/bin/python src/predict.py \
   --video x.mp4 \
   --adapter adapters/brightrate-lm-7b

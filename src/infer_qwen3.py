@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Run deterministic five-level next-token scoring with Qwen2.5-VL-7B."""
+"""Run deterministic five-level next-token scoring with a Qwen VL model."""
 
 from __future__ import annotations
 

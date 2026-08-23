@@ -1,0 +1,50 @@
+{
+  "adapter": "/scratch/09032/saini_2/brightrate-ext/ckpts/d9/sft-gemma4-v2b-split0/epoch_02",
+  "completed_utc": "2026-08-21T02:45:36.211562+00:00",
+  "frame_count": 8,
+  "frames_root": "/scratch/09032/saini_2/brightrate-ext/frames8-d9-pq16",
+  "hostname": "c318-004.ls6.tacc.utexas.edu",
+  "input_variant": "frames8-d9-pq16",
+  "level_token_ids": {
+    "Bad": 20260,
+    "Excellent": 60881,
+    "Fair": 62622,
+    "Good": 11947,
+    "Poor": 90046
+  },
+  "level_token_strategy": "title_no_space",
+  "limit": null,
+  "max_pixels": 200704,
+  "metrics": {
+    "krcc": 0.045610822136086054,
+    "n": 420,
+    "plcc": -0.0015845486641218893,
+    "rmse": 13.380037091325574,
+    "srocc": 0.059941232518644354
+  },
+  "min_pixels": 3136,
+  "model": "google/gemma-4-12B-it",
+  "model_family": "gemma4",
+  "native_pq": {
+    "cache_quantization_divisor": 65535,
+    "code_space": "SMPTE ST 2084 PQ in BT.2020 primaries",
+    "max_soft_tokens_per_image": 280,
+    "mode": "v2b",
+    "mode_env": "BRIGHTRATE_NATIVE_PQ_MODE",
+    "model_pre_patch_dense_layernorm": "standard learned LayerNorm retained",
+    "patch_dim": 6912,
+    "patch_size": 48,
+    "processor_clipping": "none",
+    "processor_normalization": "checkpoint standard arithmetic, including 1/255 rescale",
+    "processor_rescale_inverse": "none; float32 x_pq in [0,1] is supplied unchanged",
+    "processor_resize": "checkpoint default bicubic",
+    "storage": "16-bit RGB PNG"
+  },
+  "output": "/work/09032/saini_2/ls6/projects/brightrate-ext-journal/analysis/nextgen-mllm/sft/sft-gemma4-v2b-split0.csv",
+  "prompt": "These images are eight uniformly sampled frames in temporal order from one HDR user-generated video. Judge only perceptual visual quality, including compression, blur, noise, exposure, color, and temporal consistency. Rate the overall quality with exactly one word: Bad, Poor, Fair, Good, or Excellent.",
+  "qlora": false,
+  "seed": 900,
+  "slurm_job_id": "3378603",
+  "split": 0,
+  "wall_seconds": 270.596853017807
+}

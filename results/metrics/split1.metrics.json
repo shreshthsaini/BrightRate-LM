@@ -1,0 +1,22 @@
+{
+  "adapter": "analysis/mllm-brightrate/adapters/final-split1",
+  "completed_utc": "2026-08-19T16:44:29.714381+00:00",
+  "frame_count": 8,
+  "frames_root": "/scratch/09032/saini_2/brightrate-ext/frames8-d5-tonemap448",
+  "hostname": "v330-021.ls6.tacc.utexas.edu",
+  "max_pixels": 200704,
+  "metrics": {
+    "krcc": 0.7494715308557791,
+    "n": 420,
+    "plcc": 0.9110967557661662,
+    "rmse": 5.579725693767053,
+    "srocc": 0.9202716568688031
+  },
+  "min_pixels": 3136,
+  "model": "Qwen/Qwen2.5-VL-7B-Instruct",
+  "output": "analysis/mllm-brightrate/preds/split1.csv",
+  "seed": 901,
+  "slurm_job_id": "3375409",
+  "split": 1,
+  "wall_seconds": 571.2835958003998
+}

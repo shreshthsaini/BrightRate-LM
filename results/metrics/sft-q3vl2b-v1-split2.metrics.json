@@ -1,0 +1,35 @@
+{
+  "adapter": "/scratch/09032/saini_2/brightrate-ext/ckpts/d9/sft-q3vl2b-v1-split2/epoch_02",
+  "completed_utc": "2026-08-21T00:39:58.667743+00:00",
+  "frame_count": 8,
+  "frames_root": "/scratch/09032/saini_2/brightrate-ext/frames8-d9-expstack",
+  "hostname": "c318-004.ls6.tacc.utexas.edu",
+  "input_variant": "frames8-d9-expstack",
+  "level_token_ids": {
+    "Bad": 17082,
+    "Excellent": 49655,
+    "Fair": 60795,
+    "Good": 15216,
+    "Poor": 84103
+  },
+  "level_token_strategy": "title_no_space",
+  "limit": null,
+  "max_pixels": 200704,
+  "metrics": {
+    "krcc": 0.7162275824008588,
+    "n": 420,
+    "plcc": 0.8979197045721108,
+    "rmse": 5.923779861648786,
+    "srocc": 0.8957910016629982
+  },
+  "min_pixels": 3136,
+  "model": "Qwen/Qwen3-VL-2B-Instruct",
+  "model_family": "qwen3_vl",
+  "output": "/work/09032/saini_2/ls6/projects/brightrate-ext-journal/analysis/nextgen-mllm/sft/sft-q3vl2b-v1-split2.csv",
+  "prompt": "These images show eight uniformly sampled frames in temporal order from one HDR user-generated video. Each frame appears three times in a row, rendered at -2, 0, and +2 stops of exposure, so both dark and bright regions are visible. Judge only perceptual visual quality, including compression, blur, noise, exposure, color, and temporal consistency. Rate the overall quality with exactly one word: Bad, Poor, Fair, Good, or Excellent.",
+  "qlora": false,
+  "seed": 902,
+  "slurm_job_id": "3378603",
+  "split": 2,
+  "wall_seconds": 429.2869918346405
+}

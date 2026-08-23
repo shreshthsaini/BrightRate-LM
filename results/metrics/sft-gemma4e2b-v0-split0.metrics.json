@@ -1,0 +1,35 @@
+{
+  "adapter": "/scratch/09032/saini_2/brightrate-ext/ckpts/d9/sft-gemma4e2b-v0-split0/epoch_02",
+  "completed_utc": "2026-08-21T05:01:17.295199+00:00",
+  "frame_count": 8,
+  "frames_root": "/scratch/09032/saini_2/brightrate-ext/frames8-d5-tonemap448",
+  "hostname": "v330-018.ls6.tacc.utexas.edu",
+  "input_variant": "frames8-d5-tonemap448",
+  "level_token_ids": {
+    "Bad": 20260,
+    "Excellent": 60881,
+    "Fair": 62622,
+    "Good": 11947,
+    "Poor": 90046
+  },
+  "level_token_strategy": "title_no_space",
+  "limit": null,
+  "max_pixels": 200704,
+  "metrics": {
+    "krcc": 0.6984356088055077,
+    "n": 420,
+    "plcc": 0.884938612948205,
+    "rmse": 6.458773182885266,
+    "srocc": 0.8816955101663002
+  },
+  "min_pixels": 3136,
+  "model": "google/gemma-4-E2B-it",
+  "model_family": "gemma4",
+  "output": "/work/09032/saini_2/ls6/projects/brightrate-ext-journal/analysis/nextgen-mllm/sft/sft-gemma4e2b-v0-split0.csv",
+  "prompt": "These images are eight uniformly sampled frames in temporal order from one HDR user-generated video. Judge only perceptual visual quality, including compression, blur, noise, exposure, color, and temporal consistency. Rate the overall quality with exactly one word: Bad, Poor, Fair, Good, or Excellent.",
+  "qlora": false,
+  "seed": 900,
+  "slurm_job_id": "3378407",
+  "split": 0,
+  "wall_seconds": 395.9062330722809
+}

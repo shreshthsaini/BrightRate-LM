@@ -1,0 +1,33 @@
+paths:
+  metadata: data/BrightVQ.csv
+  splits: configs/splits.json
+  videos: data/videos
+  sdr_frames: cache/frames8-sdr
+  multiexposure_frames: cache/frames8-expstack
+  native_pq_frames: cache/frames8-d9-pq16
+  benchmark_frames: cache/benchmark-frames
+  checkpoints: outputs/checkpoints
+  adapters: outputs/adapters
+  runs: outputs/runs.md
+  hf_cache: .cache/huggingface
+
+models:
+  primary: Qwen/Qwen2.5-VL-7B-Instruct
+  qwen3_2b: Qwen/Qwen3-VL-2B-Instruct
+  qwen3_4b: Qwen/Qwen3-VL-4B-Instruct
+  qwen3_8b: Qwen/Qwen3-VL-8B-Instruct
+  gemma4_12b: google/gemma-4-12B-it
+
+video:
+  ffmpeg: ffmpeg
+  frame_count: 8
+  max_edge: 448
+  exposure_stops: [-2, 0, 2]
+
+training:
+  epochs: 2
+  learning_rate: 0.0001
+  lora_rank: 16
+  lora_alpha: 32
+  lora_dropout: 0.05
+  gradient_accumulation: 8

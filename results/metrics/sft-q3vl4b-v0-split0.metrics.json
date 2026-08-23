@@ -1,0 +1,35 @@
+{
+  "adapter": "/scratch/09032/saini_2/brightrate-ext/ckpts/d9/sft-q3vl4b-v0-split0/epoch_02",
+  "completed_utc": "2026-08-20T09:28:02.009906+00:00",
+  "frame_count": 8,
+  "frames_root": "/scratch/09032/saini_2/brightrate-ext/frames8-d5-tonemap448",
+  "hostname": "v330-002.ls6.tacc.utexas.edu",
+  "input_variant": "frames8-d5-tonemap448",
+  "level_token_ids": {
+    "Bad": 17082,
+    "Excellent": 49655,
+    "Fair": 60795,
+    "Good": 15216,
+    "Poor": 84103
+  },
+  "level_token_strategy": "title_no_space",
+  "limit": null,
+  "max_pixels": 200704,
+  "metrics": {
+    "krcc": 0.6529907147906061,
+    "n": 420,
+    "plcc": 0.8578762740642251,
+    "rmse": 7.021942617910656,
+    "srocc": 0.8418045649598435
+  },
+  "min_pixels": 3136,
+  "model": "Qwen/Qwen3-VL-4B-Instruct",
+  "model_family": "qwen3_vl",
+  "output": "/work/09032/saini_2/ls6/projects/brightrate-ext-journal/analysis/nextgen-mllm/sft/sft-q3vl4b-v0-split0.csv",
+  "prompt": "This is one HDR user-generated video, shown as eight uniformly sampled frames in temporal order. Judge only perceptual visual quality, including compression, blur, noise, exposure, color, and temporal consistency. Rate the overall quality with exactly one word: Bad, Poor, Fair, Good, or Excellent.",
+  "qlora": false,
+  "seed": 900,
+  "slurm_job_id": null,
+  "split": 0,
+  "wall_seconds": 150.4002501964569
+}

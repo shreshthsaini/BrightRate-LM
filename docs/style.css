@@ -65,11 +65,28 @@ h2 {
 
 p { margin: 0 0 12px; }
 
-figure { margin: 0; }
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+figure {
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  margin: 0;
+}
+
+.figure-media {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: auto;
+}
 
 figure img {
   display: block;
   width: 100%;
+  max-width: 100%;
   height: auto;
   border: 1px solid var(--rule);
   background: white;
@@ -82,12 +99,10 @@ figcaption {
   line-height: 1.4;
 }
 
-.wide { margin-bottom: 28px; }
-
-.figure-grid {
+.figure-list {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 30px 24px;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 32px;
 }
 
 .protocol {
@@ -116,6 +131,20 @@ th:nth-child(2), td:nth-child(2) { text-align: left; }
 
 thead { background: var(--soft); }
 
+.models-wrap { overflow-x: visible; }
+
+.models-table th,
+.models-table td {
+  text-align: left;
+  white-space: normal;
+  overflow-wrap: anywhere;
+}
+
+.models-table th:last-child,
+.models-table td:last-child {
+  width: 34%;
+}
+
 ul { margin: 0; padding-left: 24px; }
 li { margin: 8px 0; }
 
@@ -131,5 +160,4 @@ pre {
 @media (max-width: 700px) {
   body { font-size: 16px; }
   main { padding-top: 36px; }
-  .figure-grid { grid-template-columns: 1fr; }
 }

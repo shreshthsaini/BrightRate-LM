@@ -16,7 +16,7 @@
       <nav aria-label="Project links">
         <a href="https://arxiv.org/abs/TODO">Paper</a>
         <a href="https://github.com/shreshthsaini/BrightRate-LM">Code</a>
-        <a data-hf-models href="https://huggingface.co/shreshthsaini/brightrate-lm-7b-multiexposure">Models</a>
+        <a data-hf-models href="https://huggingface.co/shreshthsaini">Models</a>
         <a href="https://github.com/shreshthsaini/BrightVQ">BrightVQ</a>
         <a href="https://shreshthsaini.github.io/CHUG/">CHUG</a>
         <a href="https://shreshthsaini.github.io/Beyond8Bits/">Beyond8Bits</a>
@@ -30,25 +30,29 @@
 
     <section>
       <h2>Key figures</h2>
-      <figure class="wide">
-        <img src="assets/hero-pareto.png" alt="Accuracy, memory, and throughput comparisons for selected models">
-        <figcaption>BrightRate-LM gives the strongest measured accuracy among the selected models while retaining a 7B backbone.</figcaption>
-      </figure>
-      <div class="figure-grid">
+      <div class="figure-list">
         <figure>
-          <img src="assets/exposure-ladder.png" alt="SROCC change from SDR to multi-exposure input">
+          <div class="figure-media">
+            <img src="assets/hero-pareto.png" alt="Accuracy, memory, and throughput comparisons for selected models">
+          </div>
+          <figcaption>Accuracy, peak training memory, and inference throughput for the selected models.</figcaption>
+        </figure>
+        <figure>
+          <div class="figure-media">
+            <img src="assets/exposure-ladder.png" alt="SROCC change from SDR to multi-exposure input">
+          </div>
           <figcaption>Multi-exposure input improves four of five matched model and recipe pairs.</figcaption>
         </figure>
         <figure>
-          <img src="assets/family-scaling.png" alt="Zero-shot and supervised scaling across model families">
-          <figcaption>Supervised quality prediction does not improve monotonically with model size.</figcaption>
+          <div class="figure-media">
+            <img src="assets/training-regime.png" alt="Training loss by optimizer update and SROCC before and after training">
+          </div>
+          <figcaption>Representative runs reduce the training loss, but the held-out SROCC does not increase monotonically with model size.</figcaption>
         </figure>
         <figure>
-          <img src="assets/loss-curves.png" alt="Training loss curves for the studied model families">
-          <figcaption>The matched recipes converge, but lower training loss does not guarantee better held-out ranking.</figcaption>
-        </figure>
-        <figure>
-          <img src="assets/qualitative-output.png" alt="BrightRate-LM score, description, and reasoning example">
+          <div class="figure-media">
+            <img src="assets/qualitative-output.png" alt="BrightRate-LM accuracy and an example score, description, and reasoning output">
+          </div>
           <figcaption>The output interface pairs the numeric estimate with a short visual diagnosis.</figcaption>
         </figure>
       </div>
@@ -85,6 +89,36 @@
     <section>
       <h2>Data</h2>
       <p>Experiments use <a href="https://github.com/shreshthsaini/BrightVQ">BrightVQ</a> from <a href="https://openaccess.thecvf.com/content/WACV2026/papers/Saini_BrightRate_Quality_Assessment_for_User-Generated_HDR_Videos_WACV_2026_paper.pdf">BrightRate</a>.</p>
+    </section>
+
+    <section>
+      <h2>Models</h2>
+      <p>The <a href="https://huggingface.co/shreshthsaini/brightrate-lm-7b-multiexposure">multi-exposure 7B adapter</a> is the primary release. All adapters are available from the <a href="https://huggingface.co/shreshthsaini">Hugging Face profile</a>.</p>
+      <div class="table-wrap models-wrap">
+        <table class="models-table">
+          <thead>
+            <tr><th>Adapter</th><th>Input</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><a href="https://huggingface.co/shreshthsaini/brightrate-lm-7b-multiexposure">brightrate-lm-7b-multiexposure</a></td><td>Multi-exposure, primary</td></tr>
+            <tr><td><a href="https://huggingface.co/shreshthsaini/brightrate-lm-7b-sdr">brightrate-lm-7b-sdr</a></td><td>Tone-mapped SDR</td></tr>
+            <tr><td><a href="https://huggingface.co/shreshthsaini/brightrate-study-gemma4-12b-multiexposure">brightrate-study-gemma4-12b-multiexposure</a></td><td>Multi-exposure</td></tr>
+            <tr><td><a href="https://huggingface.co/shreshthsaini/brightrate-study-gemma4-12b-native-pq">brightrate-study-gemma4-12b-native-pq</a></td><td>Native PQ</td></tr>
+            <tr><td><a href="https://huggingface.co/shreshthsaini/brightrate-study-gemma4-12b-sdr">brightrate-study-gemma4-12b-sdr</a></td><td>Tone-mapped SDR</td></tr>
+            <tr><td><a href="https://huggingface.co/shreshthsaini/brightrate-study-gemma4-26b-sdr">brightrate-study-gemma4-26b-sdr</a></td><td>Tone-mapped SDR</td></tr>
+            <tr><td><a href="https://huggingface.co/shreshthsaini/brightrate-study-gemma4-31b-sdr">brightrate-study-gemma4-31b-sdr</a></td><td>Tone-mapped SDR</td></tr>
+            <tr><td><a href="https://huggingface.co/shreshthsaini/brightrate-study-gemma4-e2b-sdr">brightrate-study-gemma4-e2b-sdr</a></td><td>Tone-mapped SDR</td></tr>
+            <tr><td><a href="https://huggingface.co/shreshthsaini/brightrate-study-gemma4-e4b-sdr">brightrate-study-gemma4-e4b-sdr</a></td><td>Tone-mapped SDR</td></tr>
+            <tr><td><a href="https://huggingface.co/shreshthsaini/brightrate-study-qwen25vl-3b-multiexposure">brightrate-study-qwen25vl-3b-multiexposure</a></td><td>Multi-exposure</td></tr>
+            <tr><td><a href="https://huggingface.co/shreshthsaini/brightrate-study-qwen25vl-3b-sdr">brightrate-study-qwen25vl-3b-sdr</a></td><td>Tone-mapped SDR</td></tr>
+            <tr><td><a href="https://huggingface.co/shreshthsaini/brightrate-study-qwen3vl-2b-multiexposure">brightrate-study-qwen3vl-2b-multiexposure</a></td><td>Multi-exposure</td></tr>
+            <tr><td><a href="https://huggingface.co/shreshthsaini/brightrate-study-qwen3vl-2b-sdr">brightrate-study-qwen3vl-2b-sdr</a></td><td>Tone-mapped SDR</td></tr>
+            <tr><td><a href="https://huggingface.co/shreshthsaini/brightrate-study-qwen3vl-4b-multiexposure">brightrate-study-qwen3vl-4b-multiexposure</a></td><td>Multi-exposure</td></tr>
+            <tr><td><a href="https://huggingface.co/shreshthsaini/brightrate-study-qwen3vl-4b-sdr">brightrate-study-qwen3vl-4b-sdr</a></td><td>Tone-mapped SDR</td></tr>
+            <tr><td><a href="https://huggingface.co/shreshthsaini/brightrate-study-qwen3vl-8b-sdr">brightrate-study-qwen3vl-8b-sdr</a></td><td>Tone-mapped SDR</td></tr>
+          </tbody>
+        </table>
+      </div>
     </section>
 
     <section>

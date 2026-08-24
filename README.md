@@ -2,7 +2,7 @@
 
 BrightRate-LM assesses the perceptual quality of user-generated HDR video from a multi-exposure frame stack. It returns a 0 to 100 score, a short description of visible defects, and reasoning for the score. This work extends BrightRate (WACV 2026) with a multimodal language model and a controlled study of HDR input representations.
 
-[Paper](https://arxiv.org/abs/TODO) | [Project page](https://shreshthsaini.github.io/BrightRate-LM/) | [Models](https://huggingface.co/shreshthsaini/brightrate-lm-7b-multiexposure) | [BrightRate paper](https://openaccess.thecvf.com/content/WACV2026/papers/Saini_BrightRate_Quality_Assessment_for_User-Generated_HDR_Videos_WACV_2026_paper.pdf) | [BrightVQ repository](https://github.com/shreshthsaini/BrightVQ) | [CHUG](https://shreshthsaini.github.io/CHUG/) | [Beyond8Bits](https://shreshthsaini.github.io/Beyond8Bits/)
+[Paper](https://arxiv.org/abs/TODO) | [Project page](https://shreshthsaini.github.io/BrightRate-LM/) | [Primary adapter](https://huggingface.co/shreshthsaini/brightrate-lm-7b-multiexposure) | [Models](https://huggingface.co/shreshthsaini) | [BrightRate paper](https://openaccess.thecvf.com/content/WACV2026/papers/Saini_BrightRate_Quality_Assessment_for_User-Generated_HDR_Videos_WACV_2026_paper.pdf) | [BrightVQ repository](https://github.com/shreshthsaini/BrightVQ) | [CHUG](https://shreshthsaini.github.io/CHUG/) | [Beyond8Bits](https://shreshthsaini.github.io/Beyond8Bits/)
 
 ## Results
 

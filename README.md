@@ -2,7 +2,7 @@
 
 BrightRate-LM assesses the perceptual quality of user-generated HDR video from a multi-exposure frame stack. It returns a 0 to 100 score, a short description of visible defects, and reasoning for the score. This work extends BrightRate (WACV 2026) with a multimodal language model and a controlled study of HDR input representations.
 
-[Paper](https://arxiv.org/abs/TODO) | [Project page](https://shreshthsaini.github.io/BrightRate-LM/) | [Primary adapter](https://huggingface.co/shreshthsaini/brightrate-lm-7b-multiexposure) | [Models](https://huggingface.co/shreshthsaini) | [BrightRate paper](https://openaccess.thecvf.com/content/WACV2026/papers/Saini_BrightRate_Quality_Assessment_for_User-Generated_HDR_Videos_WACV_2026_paper.pdf) | [BrightVQ repository](https://github.com/shreshthsaini/BrightVQ) | [CHUG](https://shreshthsaini.github.io/CHUG/) | [Beyond8Bits](https://shreshthsaini.github.io/Beyond8Bits/)
+[Project page](https://shreshthsaini.github.io/BrightRate-LM/) | [Primary adapter](https://huggingface.co/shreshthsaini/brightrate-lm-7b-multiexposure) | [Models](https://huggingface.co/shreshthsaini) | [BrightRate paper](https://openaccess.thecvf.com/content/WACV2026/papers/Saini_BrightRate_Quality_Assessment_for_User-Generated_HDR_Videos_WACV_2026_paper.pdf) | [BrightVQ repository](https://github.com/shreshthsaini/BrightVQ) | [CHUG](https://shreshthsaini.github.io/CHUG/) | [Beyond8Bits](https://shreshthsaini.github.io/Beyond8Bits/)
 
 ## Results
 
@@ -12,6 +12,14 @@ BrightRate-LM numbers are means across five content-separated 80/20 splits. The 
 |---|---|---:|---:|---:|---:|
 | BrightRate-LM, Qwen2.5-VL-7B | Multi-exposure | 0.9052 | 0.9107 | 0.7281 | 5.5348 |
 | BrightRate, published | HDR-aware features | 0.8887 | 0.8970 | 0.7059 | 5.7514 |
+
+Zero-shot transfer to the Beyond8Bits official test set reaches 0.8958 SROCC.
+
+## Findings
+
+- Only the Gemma-4-12B checkpoint is encoder-free. It uses `Gemma4UnifiedVisionConfig` and sends pixels through a single learned projection, while the E2B and E4B checkpoints use 16-layer vision transformers and the 26B and 31B checkpoints use 27-layer vision transformers.
+- Native PQ input initially failed because of interface bugs. After clip-level statistics matching of PQ values, the encoder-free 12B reaches 0.8383 SROCC, above its Hable tone-mapped result of 0.7763. A percentile-matched control reaches 0.8305.
+- Multi-exposure input uses Hable-rendered views at -2, 0, and +2 stops. It improves every tested Qwen checkpoint over a single Hable tone-mapped input.
 
 ## Quickstart
 
@@ -66,7 +74,7 @@ All default paths and recipe values are in `configs/default.yaml`. Any path can 
 
 ```bibtex
 @article{saini2026brightratelm,
-  title   = {BrightRate-LM: Representation-Aware Quality Assessment for User-Generated HDR Video},
+  title   = {BrightRate-LM: Representation-Aware Reasoning Quality Assessment for User-Generated HDR Video},
   author  = {Saini, Shreshth and Wang, Yilin and Birkbeck, Neil and Adsumilli, Balu and Bovik, Alan C.},
   journal = {Machine Vision and Applications},
   year    = {2026},

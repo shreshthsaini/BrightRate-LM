@@ -161,3 +161,36 @@ pre {
   body { font-size: 16px; }
   main { padding-top: 36px; }
 }
+
+.venue {
+  color: var(--muted);
+  font-size: 0.95rem;
+  margin: 2px 0 0;
+}
+
+.fig-row {
+  display: flex;
+  gap: 34px;
+  align-items: flex-start;
+}
+
+.fig-row-text {
+  flex: 1 1 0;
+  min-width: 0;
+}
+
+.fig-demo { flex: 0 0 290px; }
+
+.fig-narrow { flex: 0 0 330px; }
+
+.fig-hero { margin: 20px 0 26px; }
+
+.fig-medium {
+  max-width: 720px;
+  margin: 14px auto 6px;
+}
+
+@media (max-width: 700px) {
+  .fig-row { flex-direction: column; }
+  .fig-demo, .fig-narrow { flex: none; width: 100%; max-width: 360px; margin: 0 auto; }
+}

@@ -13,6 +13,7 @@
       <h1>BrightRate-LM</h1>
       <p class="subtitle">Representation-Aware Reasoning Quality Assessment for User-Generated HDR Video</p>
       <p class="authors">Shreshth Saini, Yilin Wang, Neil Birkbeck, Balu Adsumilli, Alan C. Bovik</p>
+      <p class="venue">Machine Vision and Applications, WACV 2026 Special Issue (in submission)</p>
       <nav aria-label="Project links">
         <a href="https://github.com/shreshthsaini/BrightRate-LM">Code</a>
         <a data-hf-models href="https://huggingface.co/shreshthsaini">Models</a>
@@ -24,48 +25,25 @@
 
     <section>
       <h2>What this is</h2>
-      <p>BrightRate-LM predicts the perceptual quality of user-generated HDR video and returns a score, a description of visible defects, and reasoning for the score. This work extends BrightRate (WACV 2026) by testing how multimodal language models respond to Hable tone-mapped, multi-exposure, and native PQ inputs.</p>
-    </section>
-
-    <section>
-      <h2>Key figures</h2>
-      <div class="figure-list">
-        <figure>
-          <div class="figure-media">
-            <img src="assets/hero-overview.png" alt="Grouped bars comparing best zero-shot and adapted checkpoints per family, with an example reasoning output">
-          </div>
-          <figcaption>Adaptation lifts every family; BrightRate-LM pairs its score with generated reasoning.</figcaption>
-        </figure>
-        <figure>
-          <div class="figure-media">
-            <img src="assets/hero-pareto.png" alt="Accuracy, memory, and throughput comparisons for selected models">
-          </div>
-          <figcaption>Accuracy, peak training memory, and inference throughput for the selected models.</figcaption>
-        </figure>
-        <figure>
-          <div class="figure-media">
-            <img src="assets/exposure-ladder.png" alt="SROCC change from Hable tone-mapped SDR to multi-exposure input">
-          </div>
-          <figcaption>Multi-exposure input improves every tested Qwen checkpoint over a single Hable tone-mapped input.</figcaption>
-        </figure>
-        <figure>
-          <div class="figure-media">
-            <img src="assets/training-regime.png" alt="Training-loss traces colored by input interface">
-          </div>
-          <figcaption>Training-loss traces colored by input interface; shades distinguish model variants.</figcaption>
-        </figure>
-        <figure>
-          <div class="figure-media">
-            <img src="assets/qualitative-output.png" alt="BrightRate-LM example frames with the score pair and generated reasoning">
-          </div>
-          <figcaption>The output interface pairs the numeric estimate with generated reasoning.</figcaption>
+      <div class="fig-row">
+        <div class="fig-row-text">
+          <p>BrightRate-LM scores the perceptual quality of user-generated HDR video and explains itself: every prediction comes with generated reasoning that connects visible defects to the score. The clip on the right is a held-out example; the banner shows the actual recorded prediction next to the human mean opinion score.</p>
+          <p>The model adapts Qwen2.5-VL-7B with rank-16 LoRA on <a href="https://github.com/shreshthsaini/BrightVQ">BrightVQ</a>. This work extends BrightRate (WACV 2026, Oral) into a controlled study of how multimodal language models see HDR at all: three model families, checkpoints from 2B to 31B, and three ways of presenting HDR pixels, from a Hable tone-mapped proxy to multi-exposure stacks to raw PQ code values.</p>
+        </div>
+        <figure class="fig-demo">
+          <img src="assets/demo.gif" alt="Held-out HDR clip with the BrightRate-LM prediction and its MOS overlaid" loading="lazy">
+          <figcaption>A held-out clip. BrightRate-LM predicts 74.1 against a MOS of 73.1.</figcaption>
         </figure>
       </div>
     </section>
 
     <section>
-      <h2>Main result</h2>
-      <p class="protocol">BrightRate-LM values are five-split means. BrightRate values are published 100-split medians.</p>
+      <h2>Adaptation, not scale, is what matters</h2>
+      <p>Zero-shot, even strong recent checkpoints are poorly calibrated for HDR quality: the best generic model reaches 0.6856 SROCC on BrightVQ, well below the classical BrightRate predictor at 0.8887. After the same lightweight adaptation recipe, every family jumps past its zero-shot self, and the ordering by parameter count is not preserved. The adapted 7B flagship overtakes BrightRate; a 2B checkpoint gets within four points of it.</p>
+      <figure class="fig-hero">
+        <img src="assets/hero-overview.png" alt="Grouped bars comparing best zero-shot and adapted checkpoints per family, with an example reasoning output" loading="lazy">
+        <figcaption>Best zero-shot (light) and adapted (dark) checkpoints per family, with the BrightRate reference line. The output card shows the frames, the score pair, and the generated reasoning for one recorded example.</figcaption>
+      </figure>
       <div class="table-wrap">
         <table>
           <thead>
@@ -77,21 +55,65 @@
           </tbody>
         </table>
       </div>
-      <p>Zero-shot transfer to the Beyond8Bits official test set reaches 0.8958 SROCC.</p>
+      <p class="protocol">BrightRate-LM values are means over five content-separated repetitions; BrightRate values are the published 100-split medians. Without retraining, the frozen adapter also transfers: 0.8958 SROCC on the 8,281-clip Beyond8Bits official test set.</p>
     </section>
 
     <section>
-      <h2>Findings</h2>
+      <h2>How you show HDR matters more than model size</h2>
+      <div class="fig-row">
+        <figure class="fig-narrow">
+          <img src="assets/exposure-ladder.png" alt="SROCC change from Hable tone-mapped SDR to multi-exposure input" loading="lazy">
+          <figcaption>SROCC change when switching from a single tone-mapped view to the multi-exposure stack.</figcaption>
+        </figure>
+        <div class="fig-row-text">
+          <p>A single tone-mapped frame discards the highlight and shadow evidence that HDR quality judgments depend on. BrightRate-LM instead sees each frame at &minus;2, 0, and +2 stops, so crushed shadows and clipped highlights stay visible to the model.</p>
+          <p>This one change moves rankings more than model scale does. The 3B checkpoint with multi-exposure input (0.8875) overtakes the 8B checkpoint with tone-mapped input (0.8586), reversing a fourfold difference in parameters. Four of the five paired checkpoints improve; the only decline is the architecturally unusual encoder-free Gemma-4-12B.</p>
+          <p>Raw PQ code values also work once the interface is right: after clip-level statistics matching, the encoder-free model reads native PQ at 0.8383 SROCC, above its own tone-mapped 0.7763. HDR pixels are not the obstacle; mismatched input statistics are.</p>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>Training is stable; scale stays non-monotonic</h2>
+      <p>Every run reduces its soft-label loss under one shared recipe: two epochs, rank-16 LoRA, about 47.6M trainable parameters for the flagship. Falling loss does not sort the families by size, though. Multi-exposure runs (green) settle lower than their tone-mapped counterparts (blue), and the encoder-free 12B trains to the weakest development score in its family, previewing its held-out outlier behavior.</p>
+      <figure class="fig-medium">
+        <img src="assets/training-regime.png" alt="Training-loss traces colored by input interface" loading="lazy">
+        <figcaption>Training-loss traces. Color encodes the input interface; shades distinguish model variants.</figcaption>
+      </figure>
+    </section>
+
+    <section>
+      <h2>Every score arrives with its reasoning</h2>
+      <p>The score is a deterministic expectation over five quality-level tokens, and the same adapted model separately generates the reasoning, so the text never alters the number. On held-out videos the two stay consistent: a blurry 720p track meet is scored 31.6 against a MOS of 31.8, with reasoning that points at the motion blur and color shifts that drove the rating.</p>
+      <figure class="fig-medium">
+        <img src="assets/qualitative-output.png" alt="BrightRate-LM example frames with the score pair and generated reasoning" loading="lazy">
+        <figcaption>Two held-out examples: frames, the MOS and predicted score, and the generated reasoning.</figcaption>
+      </figure>
+      <p>The released records keep the misses too: on a nighttime police-checkpoint scene the model scores 35.2 against a MOS of 48.8, and the reasoning makes the failure inspectable rather than silent.</p>
+    </section>
+
+    <section>
+      <h2>Costs stay practical</h2>
+      <p>The multi-exposure interface triples the image count but not the budget: peak training memory rises from 4.53 to 5.53 GiB on the 2B checkpoint and from 9.13 to 10.29 GiB on the 4B. The 7B flagship trains in 19.91 GiB on a single A100 and evaluates at 0.40 videos per second, so accuracy, memory, and throughput can be traded along one frontier.</p>
+      <figure class="fig-medium">
+        <img src="assets/hero-pareto.png" alt="Accuracy, memory, and throughput comparisons for selected models" loading="lazy">
+        <figcaption>Held-out SROCC against peak training memory and inference throughput for five representative models.</figcaption>
+      </figure>
+    </section>
+
+    <section>
+      <h2>Key findings</h2>
       <ul>
-        <li>Only the Gemma-4-12B checkpoint is encoder-free. It uses <code>Gemma4UnifiedVisionConfig</code> and sends pixels through a single learned projection, while the E2B and E4B checkpoints use 16-layer vision transformers and the 26B and 31B checkpoints use 27-layer vision transformers.</li>
-        <li>Native PQ input initially failed because of interface bugs. After clip-level statistics matching of PQ values, the encoder-free 12B reaches 0.8383 SROCC, above its Hable tone-mapped result of 0.7763. A percentile-matched control reaches 0.8305.</li>
-        <li>Multi-exposure input uses Hable-rendered views at -2, 0, and +2 stops. It improves every tested Qwen checkpoint over a single Hable tone-mapped input.</li>
+        <li>Adaptation improves every completed checkpoint, but zero-shot rank does not predict adapted rank, and more parameters do not guarantee a better HDR quality model.</li>
+        <li>Multi-exposure input improves every tested Qwen checkpoint over a single Hable tone-mapped view, and lets a 3B model beat an 8B one.</li>
+        <li>Only Gemma-4-12B is encoder-free: it sends pixels through a single learned projection rather than a vision transformer, and it is the family outlier in every comparison.</li>
+        <li>Two historical native-PQ failures were implementation artifacts. With clip-level statistics matching, the encoder-free model learns HDR quality directly from PQ code values (0.8383 SROCC).</li>
       </ul>
     </section>
 
     <section>
       <h2>Data</h2>
-      <p>Experiments use <a href="https://github.com/shreshthsaini/BrightVQ">BrightVQ</a> from <a href="https://openaccess.thecvf.com/content/WACV2026/papers/Saini_BrightRate_Quality_Assessment_for_User-Generated_HDR_Videos_WACV_2026_paper.pdf">BrightRate</a>.</p>
+      <p>Experiments use <a href="https://github.com/shreshthsaini/BrightVQ">BrightVQ</a> from <a href="https://openaccess.thecvf.com/content/WACV2026/papers/Saini_BrightRate_Quality_Assessment_for_User-Generated_HDR_Videos_WACV_2026_paper.pdf">BrightRate</a>: 2,100 HDR10/PQ videos over 300 sources with crowdsourced MOS.</p>
     </section>
 
     <section>
